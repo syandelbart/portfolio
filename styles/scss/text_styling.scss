@@ -1,0 +1,149 @@
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: button;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #4272bb;
+    background: #325b99;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #325b99;
+}
+
+/* Headers */
+.text-reg h1,
+.text-reg h2,
+.text-reg h3,
+.text-reg h4,
+.text-reg h5,
+.text-reg h6 {
+    margin: 20px 0;
+    max-width: max-content;
+    padding: 5px 10px;
+    background-color: #325b99;
+    color: white;
+}
+
+.text-reg p {
+    font-size: 17px;
+}
+
+.text-reg h1 {
+    font-size: 33px;
+}
+.text-reg h2 {
+    font-size: 20px;
+}
+.text-reg h3 {
+    font-size: 34px;
+}
+.text-reg h4 {
+    font-size: 30px;
+}
+.text-reg h5 {
+    font-size: 26px;
+}
+.text-reg h6 {
+    font-size: 22px;
+}
+
+.text-reg h1,
+.text-reg h2,
+.text-reg h3,
+.text-reg h4,
+.text-reg h5,
+.text-reg h6 {
+    box-shadow: -10px -10px 0px -5px #4f7cc1;
+    border: 3px solid black;
+}
+
+/* Paragraph */
+.text-reg p {
+    box-shadow: -12px -12px 0px -5px #6e9de2;
+    border-radius: 15px;
+    background-color: #3e6db3;
+    color: white;
+    padding: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.text-reg pre {
+    background-color: rgb(96, 124, 184);
+    border-left: 7px solid #385e96;
+    padding: 5px 0 5px 10px;
+    border-top-left-radius: 7.5px;
+    color: #e2e1e1;
+    margin: 10px 0 7.5px 20px;
+    overflow-x: auto;
+}
+
+.text-reg pre ~ p {
+    background-color: rgb(119, 147, 209);
+    border-left: 7px solid #385e96;
+    color: rgb(18, 18, 32);
+    margin: 0;
+    margin-left: 20px;
+    border-radius: 0;
+    border-bottom-left-radius: 7.5px;
+    padding: 0;
+    padding-left: 10px;
+    box-shadow: none;
+}
+
+a:hover > .tooltip {
+    display: block;
+}
+
+/* Testing purposes
+a:first-child > .tooltip {
+    display:block;
+} */
+
+.tooltip {
+    height: 25px;
+    line-height: 200%;
+    width: 60px;
+    display: none;
+    position: absolute;
+    bottom: -40px;
+    left: -15px;
+    font-size: 13px;
+    text-align: center;
+    color: white;
+    z-index: 2;
+    padding: 0px 2px;
+    pointer-events: none;
+}
+.tooltip::before {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    border-radius: 5px;
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.tooltip::after {
+    height: 15px;
+    width: 15px;
+    background-color: black;
+    z-index: -2;
+    content: '';
+    position: absolute;
+    top: -7.5px;
+    left: calc(50% - 7.5px);
+    transform: rotate(45deg);
+}

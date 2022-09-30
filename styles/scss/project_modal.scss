@@ -1,0 +1,61 @@
+.project-modal {
+    transition: all 500ms ease-in;
+    left: 100vw;
+    animation-name: modal-in-frame;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+
+    .project-modal-image {
+        border: 3px solid black;
+        box-shadow: -20px -20px 0px -5px #385e96;
+        width: 100%;
+        .project-image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+@keyframes modal-in-frame {
+    0% {
+        left: 100vw;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+.project-description {
+    margin-bottom: 50px;
+    h1 {
+        display: none;
+    }
+
+    h2 {
+        font-size: xx-large;
+    }
+
+    a {
+        text-decoration: dashed;
+    }
+
+    table {
+        background-color: rgb(116, 144, 206);
+        border-radius: 5px 5px 0 0;
+        display: none;
+        tr {
+        }
+        tr td,
+        th {
+            padding: 1.5px 3px;
+        }
+        tr th {
+            border-bottom: 4px solid #385e96;
+        }
+        tr td {
+        }
+    }
+}
