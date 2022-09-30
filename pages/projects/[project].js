@@ -30,14 +30,13 @@ export const getStaticProps = async (context) => {
 
 const Project = ({projectData}) => {
   return (
-    <Layout>
+    <main>
       <Head>
         <title>{projectData.title} - Projects - syandelbart.com</title>
       </Head>
-      <main>
-        {projectData.content}
-      </main>
-    </Layout>
+
+      {projectData.content}
+    </main>
   );
 }
 
