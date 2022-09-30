@@ -1,4 +1,4 @@
-import Layout from '../../components/layout'
+import Layout from '../../components/layout.js'
 import styles from '../../styles/scss/Home.module.scss'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

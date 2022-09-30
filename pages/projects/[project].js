@@ -1,5 +1,5 @@
 
-import Layout from '../../components/layout'
+import Layout from '../../components/layout.js'
 import Head from "next/head";
 import Image from "next/image";
 import styles from '../../styles/scss/Home.module.scss'
@@ -18,10 +18,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  console.log("Did something");
   if(!context?.params?.project) throw new Error("No project name provided");
   const projectData = await getProjectData(context.params.project);
-  console.log(projectData);
 
   return {
     props: {
