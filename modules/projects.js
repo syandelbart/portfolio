@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { time } from "console";
 
 const projectsDir = path.join(process.cwd(), "projects");
 
@@ -20,6 +21,7 @@ export const getAllProjects = async () => {
     }
   });
 }
+
 
 
 /**
@@ -43,3 +45,19 @@ export const getProjectData = async (project) => {
     content : htmlContent.toString(),
   }
 };
+
+
+
+
+export const getAllProjectsData = async () => {
+  const projectNames = fs.readdirSync(projectsDir);
+  return projectNames.map((projectName) => { return getProjectData(projectName.replace(/\.md$/, ""))});
+}
+
+export const getAllProjectDataSorted = async () => {
+  return getAllProjectData().sort((a, b) => {
+    if(a.date || time.now() < b.date || time.now()) return 1;
+    else return -1;
+  });
+
+}
