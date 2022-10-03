@@ -23,7 +23,7 @@ return (
 <div className={`${styles.project_summary} break-words`}>
   { projectData.summary }
 </div>
-<div class="project-button-container">
+<div className={`${styles.project_button_container}`}>
   {/* <a v-if="index.page && index.yt" target="_blank" :href="index.page" @click="$router.push(`/projects/${index.name}`)">Read</a> */}
   {/* <a v-if="index.code" target="_blank" :href="index.code">Show code</a> */}
 </div>
