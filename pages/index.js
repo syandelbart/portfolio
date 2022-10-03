@@ -29,7 +29,7 @@ export default function Home() {
         <div className={`${styles.main_title_header} uppercase text-center flex flex-col items-center justify-center select-none`} >
           <Image
             src="/images/me.png"
-            alt="Picture of the author"
+            alt="A picture of me, Syan"
             width={200}
             height={200}
             className="rounded-full"
