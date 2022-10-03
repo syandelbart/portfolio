@@ -1,13 +1,28 @@
-import styles from '../../styles/scss/Home.module.scss'
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import ProjectContainer from "../../components/ProjectContainer";
+import { getAllProjectDataSorted } from '../../modules/projects';
+
+export const getStaticProps = async (context) => {
+  const allProjectsData = await getAllProjectDataSorted();
+
+  return {
+    props: {
+      allProjectsData,
+    }
+  }
+};
 
 
-const Projects = () => {
+
+
+
+const Projects = ({allProjectsData}) => {
   return (
       <main>
-        <h2>test</h2>
+        <ProjectContainer projects={allProjectsData}/>
       </main>
   )
 }
