@@ -6,4 +6,3 @@ summary: An IoT fish tank that monitors water height and can feed automatically.
 category: iot
 client: Thomas More
 ---
-# Aquarium
