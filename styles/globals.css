@@ -11,7 +11,7 @@
     display: none !important;
 }
 
-html {
+html,body {
     overflow-x: hidden;
 }
 
@@ -25,6 +25,7 @@ main {
     /* border-bottom:5px solid white; */
     position: relative;
     box-shadow: inset 0 0 200px black;
+    min-height:100vh;
 }
 
 

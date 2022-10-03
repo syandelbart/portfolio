@@ -1,4 +1,4 @@
-.project-modal {
+.project_modal {
     transition: all 500ms ease-in;
     left: 100vw;
     animation-name: modal-in-frame;
@@ -8,7 +8,7 @@
     backdrop-filter: blur(10px);
     overflow: hidden;
 
-    .project-modal-image {
+    .project_modal_image {
         border: 3px solid black;
         box-shadow: -20px -20px 0px -5px #385e96;
         width: 100%;
@@ -19,7 +19,7 @@
     }
 }
 
-@keyframes modal-in-frame {
+@keyframes modal_in_frame {
     0% {
         left: 100vw;
     }
@@ -28,7 +28,7 @@
     }
 }
 
-.project-description {
+.project_description {
     margin-bottom: 50px;
     h1 {
         display: none;

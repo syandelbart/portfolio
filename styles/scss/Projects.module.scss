@@ -4,7 +4,8 @@
 }
 
 .projects_container {
-    min-height: 100vh;
+    min-height: calc(100vh - 100px);
+    margin-top:75px;
 }
 
 .project_image_container {
@@ -41,6 +42,19 @@
         font-size: 17px;
         color: white;
         background-color: #233a5c;
+        font-family: 'Montserrat', sans-serif;
+        pointer-events: none;
+    }
+    h2 {
+        max-width:fit-content;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        margin: 0px;
+        border-bottom-left-radius: 5px;
+        font-size: 17px;
+        color: white;
+        background-color: #33517d;
         font-family: 'Montserrat', sans-serif;
         pointer-events: none;
     }
@@ -106,6 +120,7 @@
 
         &:hover::after {
             opacity: 1;
+            box-shadow: -7.5px 7.5px 0px -5px #4f7cc1;
         }
     }
 }
