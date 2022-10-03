@@ -38,7 +38,10 @@ const Project = ({projectData}) => {
       </Head>
       <div className={`${projectModalStyles.project_modal} z-50 top-0 w-screen flex items-center justify-center pt-10 flex-col `}>
         <div className="w-6/12 flex flex-col justify-center items-center">
-          <a href="/projects"  className="w-full text-white text-xl uppercase">ᐊ Back to projects page</a>
+          <Link href="/projects">
+            <a className="w-full text-white text-xl uppercase">ᐊ Back to projects page</a>
+          </Link>
+          
           <div className="w-full flex flex-row mt-5 ml-5">
             <div className={`${projectModalStyles.project_modal_image} w-3/5 h-80 bg-green-500 relative overflow-hidden`}>
               <div className={`${projectStyles.project_image} h-full w-full absolute bg-cover`}>
