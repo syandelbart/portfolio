@@ -3,7 +3,6 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
-import { time } from "console";
 
 const projectsDir = path.join(process.cwd(), "projects");
 
@@ -42,6 +41,8 @@ export const getProjectData = async (project) => {
   return {
     title : matterConversed.data.title,
     date : matterConversed.data.date,
+    bg : matterConversed.data.bg,
+    summary : matterConversed.data.summary,
     content : htmlContent.toString(),
   }
 };
@@ -51,12 +52,19 @@ export const getProjectData = async (project) => {
 
 export const getAllProjectsData = async () => {
   const projectNames = fs.readdirSync(projectsDir);
-  return projectNames.map((projectName) => { return getProjectData(projectName.replace(/\.md$/, ""))});
+  let allProjectsData = projectNames.map(async (projectName) => { 
+    return await getProjectData(projectName.replace(/\.md$/, ""))
+  });
+
+
+
+  return await Promise.all(allProjectsData);
 }
 
 export const getAllProjectDataSorted = async () => {
-  return getAllProjectData().sort((a, b) => {
-    if(a.date || time.now() < b.date || time.now()) return 1;
+  console.log("Getting all project data");
+  return (await getAllProjectsData()).sort((a, b) => {
+    if(a.date || (new Date()).getTime() < b.date || (new Date()).getTime()) return 1;
     else return -1;
   });
 
