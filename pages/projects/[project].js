@@ -35,7 +35,13 @@ const Project = ({projectData}) => {
 
 <div>
       <Head>
-        <title>{projectData.title} - Projects - syandelbart.com</title>
+        <title>{ projectData.title } - Projects - syandelbart.com</title>
+        <meta property="og:title" content={`${projectData.title} - Projects - syandelbart.com`} />
+        <meta name="description" content={ projectData.summary } key="desc" />
+        <meta
+          property="og:image"
+          content={`https://www.syandelbart.com/images/${projectData.bg}`}
+        />
       </Head>
       <div className={`${projectModalStyles.project_modal} z-50 top-0 w-screen flex items-center justify-center pt-10 flex-col `}>
         <div className="w-6/12 flex flex-col justify-center items-center">

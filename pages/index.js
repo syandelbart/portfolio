@@ -1,5 +1,6 @@
 import styles from '../styles/scss/Home.module.scss'
 import Image from 'next/image';
+import Head from 'next/head';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,8 +16,16 @@ import {
 
 export default function Home() {
   return (
-    <main>
       <div id="home" className="h-screen max-h-screen w-screen flex flex-col justify-center items-center relative" >
+      <Head>
+        <title>Home - syandelbart.com</title>
+        <meta property="og:title" content="Home - syandelbart.com" />
+        <meta name="description" content="Get to know me and my work!" key="desc" />
+        <meta
+          property="og:image"
+          content="https://www.syandelbart.com/images/me.png"
+        />
+      </Head>
         <div className={`${styles.main_title_header} uppercase text-center flex flex-col items-center justify-center select-none`} >
           <Image
             src="/images/me.png"
@@ -54,6 +63,5 @@ export default function Home() {
           </a>
         </div>
       </div>
-    </main>
   )
 }

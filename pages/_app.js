@@ -3,6 +3,7 @@ import "../styles/scss/text_styling.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
 import "@fortawesome/free-brands-svg-icons";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import Head from "next/head";
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 import Navbar from "../components/navbar";
@@ -12,6 +13,9 @@ function App({ Component, pageProps }) {
   return (
     <>
       <main>
+        <Head>
+          <link rel="shortcut icon" href="/favicon.png" />
+        </Head>
         <Navbar/>
         <Component {...pageProps} />
         <Footer/>
