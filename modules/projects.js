@@ -39,10 +39,7 @@ export const getProjectData = async (project) => {
 
 
   return {
-    title : matterConversed.data.title,
-    date : matterConversed.data.date,
-    bg : matterConversed.data.bg,
-    summary : matterConversed.data.summary,
+    ...matterConversed.data,
     content : htmlContent.toString(),
   }
 };

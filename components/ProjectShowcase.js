@@ -19,6 +19,7 @@ return (
         <a className={styles.readmore}></a>
       </Link>
     <h1 class="bg-black py-0.5 px-1">{projectData.title}</h1>
+    <h2 class="bg-black py-0.5 px-1">{projectData.category}</h2>
 </div>
 <div className={`${styles.project_summary} break-words`}>
   { projectData.summary }

@@ -5,10 +5,9 @@ function Footer() {
         footer {
           width: 100%;
           text-align: center;
-          position: absolute;
-          bottom: 0;
           padding: 20px 0;
-          color: rgb(57, 92, 61);
+          position:absolute;
+          bottom:0;
       `}</style>
     </footer>
 
