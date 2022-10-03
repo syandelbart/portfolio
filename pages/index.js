@@ -1,4 +1,5 @@
 import styles from '../styles/scss/Home.module.scss'
+import Image from 'next/image';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,13 +16,15 @@ import {
 export default function Home() {
   return (
     <main>
-      <div
-        id="home"
-        className="h-screen max-h-screen w-screen flex flex-col justify-center items-center relative"
-      >
-        <div
-          className={`${styles.main_title_header} uppercase text-center flex flex-col items-center justify-center select-none`}
-        >
+      <div id="home" className="h-screen max-h-screen w-screen flex flex-col justify-center items-center relative" >
+        <div className={`${styles.main_title_header} uppercase text-center flex flex-col items-center justify-center select-none`} >
+          <Image
+            src="/images/me.png"
+            alt="Picture of the author"
+            width={200}
+            height={200}
+            className="rounded-full"
+          />
           <h1 className="border-b-2 border-black">Syan Delbart</h1>
           <h3>Portfolio</h3>
         </div>
@@ -32,7 +35,7 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="max-h-5 text-3xl children:text-black child:mx-1">
+        <div className="text-3xl children:text-black child:mx-1">
           <a className="relative" target="_blank" href="https://www.linkedin.com/in/syandelbart/">
           <FontAwesomeIcon style={{ fontSize:30}} icon={faLinkedin} />
             <span className="tooltip">Linkedin</span>
