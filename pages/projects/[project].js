@@ -1,6 +1,7 @@
 
 import Head from "next/head";
 import Image from "next/image";
+import Link from 'next/link';
 import styles from '../../styles/scss/Home.module.scss'
 import projectModalStyles from '../../styles/scss/ProjectModal.module.scss'
 import projectStyles from '../../styles/scss/Projects.module.scss'
