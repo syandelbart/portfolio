@@ -62,7 +62,6 @@ export const getAllProjectsData = async () => {
 }
 
 export const getAllProjectDataSorted = async () => {
-  console.log("Getting all project data");
   return (await getAllProjectsData()).sort((a, b) => {
     if(a.date || (new Date()).getTime() < b.date || (new Date()).getTime()) return 1;
     else return -1;
