@@ -21,9 +21,7 @@ export const getStaticProps = async (context) => {
 
 const Projects = ({allProjectsData}) => {
   return (
-      <main>
         <ProjectContainer projects={allProjectsData}/>
-      </main>
   )
 }
 
