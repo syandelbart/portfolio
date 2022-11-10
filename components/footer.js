@@ -1,11 +1,11 @@
 function Footer() {
   return (
-    <footer>Made with lots of ❤️ by Syan Delbart - &copy; 2022
+    <footer className="p-10 text-soft">&copy; {(new Date()).getFullYear()}
       <style jsx>{`
         footer {
           width: 100%;
-          text-align: center;
-          padding: 20px 0;
+          text-align: right;
+          padding: 20px;
           position:absolute;
           bottom:0;
       `}</style>
