@@ -15,7 +15,20 @@ import {
   faCodepen,
 } from "@fortawesome/free-brands-svg-icons";
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'home'])),
+      // Will be passed to the page component as props
+    },
+  };
+}
+
 export default function Home() {
+  const { t } = useTranslation('home');
   return (
       <div className="h-screen max-h-screen w-screen flex flex-col justify-center items-center relative bg-background" >
         <Head>
@@ -30,12 +43,12 @@ export default function Home() {
 
         <div className="flex text-default justify-around w-full  max-w-6xl ">
           <div className="flex flex-col max-w-[33vw] items-start">
-            <h1 className="text-4xl font-bold">Hi, I'm Syan.</h1>
-            <p className="text-xl my-2">
-              Website builder and fulltime student.<br></br> This is my little place on the internet.
+            <h1 className="text-4xl font-bold">{t("intro.title")}</h1>
+            <p className="text-xl my-2 max-w-[300px]">
+              {t("intro.description")}
             </p>
-            <Link href="/">
-              <a className="bg-backdrop py-3 px-10 text-2xl rounded-md my-8">Build me a website!</a>
+            <Link href="/" className="bg-backdrop py-3 px-10 text-2xl rounded-md my-8">
+              {t("intro.button")}
             </Link>
             
           </div>
