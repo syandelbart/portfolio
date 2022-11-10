@@ -1,6 +1,7 @@
 import styles from '../styles/scss/Home.module.scss'
 import Image from 'next/image';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -16,51 +17,56 @@ import {
 
 export default function Home() {
   return (
-      <div id="home" className="h-screen max-h-screen w-screen flex flex-col justify-center items-center relative" >
-      <Head>
-        <title>Home - syandelbart.com</title>
-        <meta property="og:title" content="Home - syandelbart.com" />
-        <meta name="description" content="Get to know me and my work!" key="desc" />
-        <meta
-          property="og:image"
-          content="https://www.syandelbart.com/images/me.png"
-        />
-      </Head>
-        <div className={`${styles.main_title_header} uppercase text-center flex flex-col items-center justify-center select-none`} >
-          <Image
-            src="/images/me.png"
-            alt="A picture of me, Syan"
-            width={200}
-            height={200}
-            className="rounded-full"
+      <div className="h-screen max-h-screen w-screen flex flex-col justify-center items-center relative bg-background" >
+        <Head>
+          <title>Home - syandelbart.com</title>
+          <meta property="og:title" content="Home - syandelbart.com" />
+          <meta name="description" content="Get to know me and my work!" key="desc" />
+          <meta
+            property="og:image"
+            content="https://www.syandelbart.com/images/me.png"
           />
-          <h1 className="border-b-2 border-black">Syan Delbart</h1>
-          <h3>Portfolio</h3>
-        </div>
-        <div className={`${styles.main_navigation_support} pt-10 pb-10`}>
-          <a href="mailto:syan.delbart@hotmail.com">
-            <FontAwesomeIcon style={{ fontSize:20}} icon={faEnvelope} />
-            Send me an e-mail
-          </a>
-        </div>
+        </Head>
 
-        <div className="text-3xl children:text-black child:mx-1">
-          <a className="relative" target="_blank" href="https://www.linkedin.com/in/syandelbart/">
-          <FontAwesomeIcon style={{ fontSize:30}} icon={faLinkedin} />
-            <span className="tooltip">Linkedin</span>
-          </a>
-          <a className="relative" target="_blank" href="https://github.com/syandelbart">
-            <FontAwesomeIcon style={{ fontSize:30}} icon={faGithub} />
-            <span className="tooltip">GitHub</span>
-          </a>
-          <a className="relative" target="_blank" href="https://codepen.io/syandelbart">
-          <FontAwesomeIcon style={{ fontSize:30}} icon={faCodepen} />
-            <span className="tooltip">CodePen</span>
-          </a>
-          <a className="relative" target="_blank" href="/CV.pdf">
-          <FontAwesomeIcon style={{ fontSize:30}} icon={faIdCard} />
-            <span className="tooltip">CV</span>
-          </a>
+        <div className="flex text-default justify-around w-full  max-w-6xl ">
+          <div className="flex flex-col max-w-[33vw] items-start">
+            <h1 className="text-4xl font-bold">Hi, I'm Syan.</h1>
+            <p className="text-xl my-2">
+              Website builder and fulltime student.<br></br> This is my little place on the internet.
+            </p>
+            <Link href="/">
+              <a className="bg-backdrop py-3 px-10 text-2xl rounded-md my-8">Build me a website!</a>
+            </Link>
+            
+          </div>
+          <div className="flex flex-col justify-center gap-2 items-center text-xl text-soft">
+            <a className="relative" target="_blank" href="https://www.linkedin.com/in/syandelbart/">
+            <FontAwesomeIcon style={{ fontSize:30}} icon={faLinkedin} />
+              <span className="tooltip">Linkedin</span>
+            </a>
+            <a className="relative" target="_blank" href="https://github.com/syandelbart">
+              <FontAwesomeIcon style={{ fontSize:30}} icon={faGithub} />
+              <span className="tooltip">GitHub</span>
+            </a>
+            <a className="relative" target="_blank" href="https://codepen.io/syandelbart">
+            <FontAwesomeIcon style={{ fontSize:30}} icon={faCodepen} />
+              <span className="tooltip">CodePen</span>
+            </a>
+            <a className="relative" target="_blank" href="/CV.pdf">
+            <FontAwesomeIcon style={{ fontSize:30}} icon={faIdCard} />
+              <span className="tooltip">CV</span>
+            </a>
+          </div>
+          <div>
+            <Image
+                src="/images/me.png"
+                alt="A picture of me, Syan"
+                width={300}
+                height={300}
+                className="border-[10px]  border-backdrop"
+              />
+          </div>
+
         </div>
       </div>
   )
