@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { useRouter } from "next/router";
+import { useTranslation } from 'next-i18next';
+import { useEffect } from 'react';
 
 const navLinks = [
-  { title: 'Home', path: '/' },
-  { title: 'Projects', path: '/projects' },
+  { nl: 'Startpagina', en: 'Home', path: '/' },
+  { nl: 'Projecten', en: 'Projects', path: '/projects' },
 ];
 
 
@@ -11,21 +13,15 @@ const navLinks = [
 
 const Navbar = () => {
   const router = useRouter();
-  const { locales, locale: activeLocale } = router
-
-  const otherLocales = (locales || []).filter(
-    (locale) => locale !== activeLocale
-  )
+  const { locales, locale: activeLocale } = router;
 
   return (
     <nav className="absolute top-0 left-0 p-10 z-50 flex justify-between w-full text-default text-lg">
       <div className="child:mx-2">
         {
           navLinks.map((link) => (
-            <Link href={link.path}>
-              <a className={`${ (router.pathname === link.path) ? "activeLink underline underline-offset-[6px] decoration-1" : ""}  text-link-inactive`}>
-                { link.title }
-              </a>
+            <Link key={link.path} suppressHydrationWarning href={link.path} className={`${ (router.pathname === link.path) ? "text-white underline underline-offset-[6px] decoration-1" : "text-link-inactive"}`}>
+              { link[activeLocale] }
             </Link>
             )
           )
@@ -39,22 +35,15 @@ const Navbar = () => {
                 href={{ pathname, query }}
                 as={asPath}
                 locale={locale}
-                legacyBehavior
+                key={locale}
+                className={`${ (locale === activeLocale) ? "text-white order-1 pointer-events-none" : "text-link-inactive order-2"}`}
               >
-                <a className={`${ (locale === activeLocale) ? "activeLink order-1" : "order-2"}  text-link-inactive`}>
-                  {locale.toUpperCase()}
-                </a>
+                {locale.toUpperCase()}
               </Link>
             )
           })}
           
       </div>
-
-      <style jsx>{`
-          .activeLink {
-            color: #ffffff;
-          }
-        `}</style>
     </nav>
 
   );
