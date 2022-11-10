@@ -49,7 +49,7 @@ const Project = ({projectData}) => {
             <a className="w-full text-white text-xl uppercase">ᐊ Back to projects page</a>
           </Link>
           
-          <div className="w-full flex flex-row mt-5 ml-5">
+          <div className="w-full mt-5 ml-5">
             <div className={`${projectModalStyles.project_modal_image} w-3/5 h-80 bg-green-500 relative overflow-hidden`}>
               <div className={`${projectStyles.project_image} h-full w-full absolute bg-cover`}>
                 <Image
@@ -62,16 +62,16 @@ const Project = ({projectData}) => {
               </div>
             </div>
             <div className="ml-4 w-2/5 text-white">
-              <div className="border-l-4 bg-brand-button pl-2 p-2">
+              <div className="pl-2 p-2">
                 <h1 className="text-4xl uppercase">{ projectData.title }</h1>
-                <h2 class="text-md font-bold text-white">
+                <h2 className="text-md font-bold text-white">
                   { projectData.client }
                 </h2>
-                <p class="text-base">{ projectData.summary }</p>
+                <p className="text-base">{ projectData.summary }</p>
               </div>
 
-              <div class="h-full">
-                <div class="project-button-container flex flex-row">
+              <div className="h-full">
+                <div className="project-button-container flex flex-row">
                   {/* <a
                     v-if="projectData[project_name].code"
                     target="_blank"
@@ -80,7 +80,7 @@ const Project = ({projectData}) => {
                   <a
                     v-if="projectData[project_name].yt"
                     target="_blank"
-                    class="youtube"
+                    className="youtube"
                     :href="projectData[project_name].yt"
                   >Filmpje</a> */}
                 </div>
@@ -88,7 +88,7 @@ const Project = ({projectData}) => {
             </div>
           </div>
         </div>
-        <span class="project-description w-6/12 text-reg mt-5 inline-block" dangerouslySetInnerHTML={{ __html : projectData.content }}>
+        <span className="project-description w-6/12 text-reg mt-5 inline-block" dangerouslySetInnerHTML={{ __html : projectData.content }}>
 
         </span>
       </div>
