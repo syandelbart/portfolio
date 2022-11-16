@@ -15,7 +15,7 @@ return (
                   33vw"
         />
         {/* Could be youtube class as well */}
-        <Link href={"/projects/" + projectData.title.toLowerCase()}>
+        <Link legacyBehavior href={"/projects/" + projectData.title.toLowerCase()}>
           <a className={styles.readmore}></a>
         </Link>
       <h1 className="bg-black py-0.5 px-1">{projectData.title}</h1>
