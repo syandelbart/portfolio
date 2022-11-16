@@ -8,9 +8,10 @@ import projectStyles from '../../styles/scss/Projects.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {getAllProjects, getProjectData} from "../../modules/projects";
+import ProjectFeatured from "../../components/ProjectFeatured";
 
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async ({ locales }) => {
   const paths = await getAllProjects();
   return {
     paths,
@@ -20,7 +21,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   if(!context?.params?.project) throw new Error("No project name provided");
-  const projectData = await getProjectData(context.params.project);
+  const projectData = await getProjectData(`${context.params.project}-${context.locale}`);
 
   return {
     props: {
@@ -32,73 +33,24 @@ export const getStaticProps = async (context) => {
 
 const Project = ({projectData}) => {
   return (
-
-<div>
-      <Head>
-        <title>{ projectData.title } - Projects - syandelbart.com</title>
-        <meta property="og:title" content={`${projectData.title} - Projects - syandelbart.com`} />
-        <meta name="description" content={ projectData.summary } key="desc" />
-        <meta
-          property="og:image"
-          content={`https://www.syandelbart.com/images/${projectData.bg}`}
-        />
-      </Head>
-      <div className={`${projectModalStyles.project_modal} z-50 top-0 w-screen flex items-center justify-center pt-10 flex-col `}>
-        <div className="w-6/12 flex flex-col justify-center items-center">
-          <Link href="/projects">
-            <a className="w-full text-white text-xl uppercase">ᐊ Back to projects page</a>
-          </Link>
-          
-          <div className="w-full mt-5 ml-5">
-            <div className={`${projectModalStyles.project_modal_image} w-3/5 h-80 bg-green-500 relative overflow-hidden`}>
-              <div className={`${projectStyles.project_image} h-full w-full absolute bg-cover`}>
-                <Image
-                  src={projectData.bg}
-                  layout="fill"
-                  sizes="(max-width: 768px) 100vw,
-                          (max-width: 1200px) 50vw, "
-                  alt={projectData.title}
-                />
-              </div>
-            </div>
-            <div className="ml-4 w-2/5 text-white">
-              <div className="pl-2 p-2">
-                <h1 className="text-4xl uppercase">{ projectData.title }</h1>
-                <h2 className="text-md font-bold text-white">
-                  { projectData.client }
-                </h2>
-                <p className="text-base">{ projectData.summary }</p>
-              </div>
-
-              <div className="h-full">
-                <div className="project-button-container flex flex-row">
-                  {/* <a
-                    v-if="projectData[project_name].code"
-                    target="_blank"
-                    :href="projectData[project_name].code"
-                  >Code</a>
-                  <a
-                    v-if="projectData[project_name].yt"
-                    target="_blank"
-                    className="youtube"
-                    :href="projectData[project_name].yt"
-                  >Filmpje</a> */}
-                </div>
-              </div>
-            </div>
+    <div className="min-h-screen w-screen justify-center items-center relative bg-background">
+          <Head>
+            <title>{ projectData.title } - Projects - syandelbart.com</title>
+            <meta property="og:title" content={`${projectData.title} - Projects - syandelbart.com`} />
+            <meta name="description" content={ projectData.summary } key="desc" />
+            <meta
+              property="og:image"
+              content={`https://www.syandelbart.com/images/${projectData.bg}`}
+            />
+          </Head>
+          <div className="container mx-auto py-48">
+            <Link href="/projects" className="w-full text-white text-xl uppercase">
+              ᐊ Back to projects page
+            </Link>
+            <ProjectFeatured projectData={projectData} inProjectPage={true}/>
+            <span className="project-description w-6/12 text-reg mt-5 inline-block" dangerouslySetInnerHTML={{ __html : projectData.content }}></span>
           </div>
-        </div>
-        <span className="project-description w-6/12 text-reg mt-5 inline-block" dangerouslySetInnerHTML={{ __html : projectData.content }}>
-
-        </span>
-      </div>
-</div>
-
-
-
-      
-
-      
+    </div>
 
   );
 }
