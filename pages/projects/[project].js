@@ -13,6 +13,8 @@ import ProjectFeatured from "../../components/ProjectFeatured";
 import { useTranslation, useLanguageQuery } from 'next-export-i18n';
 import { useRouter } from "next/router";
 
+import i18n from "../../i18n/index";
+
 
 export const getStaticPaths = async () => {
   const paths = await getAllProjects();
@@ -27,15 +29,24 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   if(!context?.params?.project) throw new Error("No project name provided");
 
-  const projectData = await getProjectData(`${context.params.project}-${"en"}`);
-  const projectDataNL = await getProjectData(`${context.params.project}-${"nl"}`);
+
+
+  let projectData = Object.keys(i18n.translations).map(async (lang) => {
+    return await getProjectData(`${context.params.project}-${lang}`);
+  });
+
+  projectData = await Promise.all(projectData);
+
+  projectData = projectData.reduce((acc, cur) => {
+    acc[cur.locale] = cur;
+    return acc;
+  }, {});
+
+
 
   return {
     props: {
-      projectData : {
-        "nl" : projectData,
-        "en" : projectDataNL
-      }
+      projectData : projectData
     }
   }
 };
@@ -46,8 +57,10 @@ const Project = ({projectData}) => {
   const { t } = useTranslation();
   const [query] = useLanguageQuery();
 
-  projectData = projectData[t("lang")];
   console.log(projectData);
+
+
+  projectData = projectData[(router.query.lang || "en")];
 
   return (
     <div className="min-h-screen w-screen justify-center items-center relative bg-background">
