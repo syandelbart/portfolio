@@ -11,15 +11,15 @@ const projectsDir = path.join(process.cwd(), "projects");
  */
 export const getAllProjects = async () => {
   const projectNames = fs.readdirSync(projectsDir);
+  const projectNamesFiltered = projectNames.filter((projectName) => projectName.substring(projectName.lastIndexOf("-") + 1, projectName.lastIndexOf(".md")) == "en");
 
   return projectNames.map((projectName) => {
     let locale = projectName.substring(projectName.lastIndexOf("-") + 1, projectName.lastIndexOf(".md"));
 
     return {
       params : {
-        project: projectName.substring(0, projectName.lastIndexOf("-"))
+        project: `${projectName.substring(0, projectName.lastIndexOf("-"))}`,
       },
-      locale : locale
     }
   });
 }
@@ -67,7 +67,7 @@ export const getAllProjectDataSorted = async () => {
   });
 }
 
-export const getAllProjectDataSortedByLocale = async (locale = "en") => {
+export const getAllProjectDataSortedLocale = async (locale = "en") => {
   return (await getAllProjectDataSorted()).filter(project => project.locale === locale);
 }
 
