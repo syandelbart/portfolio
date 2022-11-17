@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "eslint-config-next": "^13.0.2",
     "gray-matter": "^4.0.3",
     "next": "^13.0.2",
+    "next-export-i18n": "^2.1.0",
     "next-i18next": "^12.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
