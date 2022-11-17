@@ -1,0 +1,16 @@
+{
+  "lang": "nl",
+  "navbar": {
+    "link": {
+      "/": "Startpagina",
+      "/projects": "Projecten"
+    }
+  },
+  "home": {
+    "intro": {
+      "title": "Hey, ik ben Syan!",
+      "description": "Websitebouwer en fulltime student. Dit is mijn plekje op het internet.",
+      "button": "Bouw een website!"
+    }
+  }
+}

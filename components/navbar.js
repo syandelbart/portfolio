@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import { useRouter } from "next/router";
-import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
+
+import {
+  useTranslation,
+  useLanguageQuery,
+  LanguageSwitcher,
+} from "next-export-i18n";
 
 const navLinks = [
   { nl: 'Startpagina', en: 'Home', path: '/' },
@@ -14,34 +19,25 @@ const navLinks = [
 const Navbar = () => {
   const router = useRouter();
   const { locales, locale: activeLocale } = router;
+  const { t } = useTranslation();
+  const [query] = useLanguageQuery();
 
   return (
     <nav className="absolute top-0 left-0 p-10 z-50 flex justify-between w-full text-default text-lg">
       <div className="child:mx-2">
         {
           navLinks.map((link) => (
-            <Link key={link.path} suppressHydrationWarning href={link.path} className={`${ (router.pathname === link.path) ? "text-white underline underline-offset-[6px] decoration-1" : "text-link-inactive"}`}>
-              { link[activeLocale] }
+            <Link key={link.path} suppressHydrationWarning href={{pathname: link.path, query: query}} className={`${ (router.pathname === link.path) ? "text-white underline underline-offset-[6px] decoration-1" : "text-link-inactive"}`}>
+              { t(`navbar.link.${link.path}`) }
             </Link>
             )
           )
         }      
       </div>
       <div className="float-right flex gap-4">
-        {locales.map((locale) => {
-            const { pathname, query, asPath } = router
-            return (
-              <Link
-                href={{ pathname, query }}
-                as={asPath}
-                locale={locale}
-                key={locale}
-                className={`${ (locale === activeLocale) ? "text-white order-1 pointer-events-none" : "text-link-inactive order-2"}`}
-              >
-                {locale.toUpperCase()}
-              </Link>
-            )
-          })}
+        <LanguageSwitcher lang="en">EN</LanguageSwitcher>
+        <LanguageSwitcher lang="nl">NL</LanguageSwitcher>
+
           
       </div>
     </nav>

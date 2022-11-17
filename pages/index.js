@@ -15,20 +15,24 @@ import {
   faCodepen,
 } from "@fortawesome/free-brands-svg-icons";
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
+import {
+  useTranslation,
+  useLanguageQuery,
+  LanguageSwitcher,
+} from "next-export-i18n";
 
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common', 'home'])),
-      // Will be passed to the page component as props
-    },
-  };
-}
+// export async function getStaticProps({ locale }) {
+//   return {
+//     props: {
+//       ...(await serverSideTranslations(locale, ['common', 'home'])),
+//       // Will be passed to the page component as props
+//     },
+//   };
+// }
 
 export default function Home() {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation();
+  const [query] = useLanguageQuery();
   return (
       <div className="min-h-screen w-screen flex flex-col justify-center items-center relative bg-background " >
         <Head>
@@ -43,12 +47,12 @@ export default function Home() {
 
         <div className="flex text-default justify-center sm:justify-around m-auto w-full max-w-[95vw]  sm:max-w-6xl flex-col sm:flex-row mt-40 sm:mt-0 mb-20 sm:mb-0">
           <div className="flex flex-col sm:max-w-[33vw] items-start m-auto sm:m-0">
-            <h1 className="text-3xl sm:text-4xl font-bold">{t("intro.title")}</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold">{t("home.intro.title")}</h1>
             <p className="text-lg sm:text-xl my-2 max-w-[75vw] sm:max-w-[300px]">
-              {t("intro.description")}
+              {t("home.intro.description")}
             </p>
             <Link href="/" className="bg-backdrop py-2 sm:py-3 px-4 sm:px-10 text-2xl rounded-md sm:my-8 m-auto mt-5">
-              {t("intro.button")}
+              {t("home.intro.button")}
             </Link>
             
           </div>

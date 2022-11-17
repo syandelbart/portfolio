@@ -10,8 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {getAllProjects, getProjectData} from "../../modules/projects";
 import ProjectFeatured from "../../components/ProjectFeatured";
 
+import { useTranslation, useLanguageQuery } from 'next-export-i18n';
+import { useRouter } from "next/router";
 
-export const getStaticPaths = async ({ locales }) => {
+import i18n from "../../i18n/index";
+
+
+export const getStaticPaths = async () => {
   const paths = await getAllProjects();
   return {
     paths,
@@ -19,19 +24,44 @@ export const getStaticPaths = async ({ locales }) => {
   };
 };
 
+
+
 export const getStaticProps = async (context) => {
   if(!context?.params?.project) throw new Error("No project name provided");
-  const projectData = await getProjectData(`${context.params.project}-${context.locale}`);
+
+
+
+  let projectData = Object.keys(i18n.translations).map(async (lang) => {
+    return await getProjectData(`${context.params.project}-${lang}`);
+  });
+
+  projectData = await Promise.all(projectData);
+
+  projectData = projectData.reduce((acc, cur) => {
+    acc[cur.locale] = cur;
+    return acc;
+  }, {});
+
+
 
   return {
     props: {
-      projectData,
+      projectData : projectData
     }
   }
 };
 
 
 const Project = ({projectData}) => {
+  const router = useRouter();
+  const { t } = useTranslation();
+  const [query] = useLanguageQuery();
+
+  console.log(projectData);
+
+
+  projectData = projectData[(router.query.lang || "en")];
+
   return (
     <div className="min-h-screen w-screen justify-center items-center relative bg-background">
           <Head>
@@ -44,7 +74,7 @@ const Project = ({projectData}) => {
             />
           </Head>
           <div className="container mx-auto py-48">
-            <Link href="/projects" className="w-full text-white text-xl uppercase">
+            <Link href={{ pathname: "/projects", query: query}} className="w-full text-white text-xl uppercase">
               ᐊ Back to projects page
             </Link>
             <ProjectFeatured projectData={projectData} inProjectPage={true}/>

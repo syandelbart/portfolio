@@ -5,7 +5,6 @@ import "@fortawesome/free-brands-svg-icons";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Head from "next/head";
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
-import { appWithTranslation } from 'next-i18next';
 
 
 
@@ -27,4 +26,4 @@ function App({ Component, pageProps }) {
   );
 }
 
-export default appWithTranslation(App);;
+export default App

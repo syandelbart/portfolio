@@ -2,13 +2,20 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head"
-import { useRouter } from "next/router";
 
 import ProjectSemiFeatured from "../../components/ProjectSemiFeatured";
 import ProjectDefault from "../../components/ProjectDefault";
 import ProjectFeatured from "../../components/ProjectFeatured";
 
-import { getAllProjectDataSorted } from '../../modules/projects';
+import { getAllProjectDataSorted } from "../../modules/projects";
+
+import { useRouter } from "next/router";
+
+import {
+  useTranslation,
+  useLanguageQuery,
+  LanguageSwitcher,
+} from "next-export-i18n";
 
 
 export const getStaticProps = async (context) => {
@@ -27,10 +34,17 @@ export const getStaticProps = async (context) => {
 
 const Projects = ({allProjectsData}) => {
   const router = useRouter();
-  const { locales, locale: activeLocale } = router;
+  const { t } = useTranslation();
+  const [query] = useLanguageQuery();
 
-  const allProjectsDataSortedByLocale = allProjectsData.filter(project => project.locale === activeLocale);
-  const allProjectsFeatured = allProjectsDataSortedByLocale.filter(project => project.featured === true);
+  const allProjectsLocale = allProjectsData.filter((project) => project.locale === (router.query.lang || "en"));
+
+  console.log(allProjectsLocale);
+
+  const allProjectsFeatured = allProjectsLocale.filter((project) => project.featured === true);
+
+  console.log(allProjectsFeatured);
+  
 
 
   return (
@@ -42,17 +56,17 @@ const Projects = ({allProjectsData}) => {
       </Head>
       <div className="container mx-auto py-48">
         <ProjectFeatured projectData={allProjectsFeatured[0]} />
-        {
-          allProjectsData.keys().length > 1 ? (
+        {/* {
+          allProjectsLocale.keys().length > 1 ? (
             <div className="grid grid-cols-2 mt-20">
               <ProjectSemiFeatured projectData={allProjectsFeatured[0]}/>
               <ProjectSemiFeatured projectData={allProjectsFeatured[0]}/>
             </div>
           ) : null
-        }
+        } */}
         <div className="grid grid-cols-3 mt-20">
           {
-            allProjectsDataSortedByLocale.map((project) => {
+            allProjectsLocale.map((project) => {
               return (
                 <ProjectDefault projectData={project} />
               )
