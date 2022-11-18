@@ -56,14 +56,12 @@ const Projects = ({allProjectsData}) => {
       </Head>
       <div className="container mx-auto py-48">
         <ProjectFeatured projectData={allProjectsFeatured[0]} />
-        {/* {
-          allProjectsLocale.keys().length > 1 ? (
-            <div className="grid grid-cols-2 mt-20">
-              <ProjectSemiFeatured projectData={allProjectsFeatured[0]}/>
-              <ProjectSemiFeatured projectData={allProjectsFeatured[0]}/>
-            </div>
-          ) : null
-        } */}
+        {
+          <div className="grid grid-cols-2 mt-20">
+            <ProjectSemiFeatured projectData={allProjectsFeatured[0]}/>
+            <ProjectSemiFeatured projectData={allProjectsFeatured[0]}/>
+          </div>
+        }
         <div className="grid grid-cols-3 mt-20">
           {
             allProjectsLocale.map((project) => {

@@ -23,11 +23,14 @@ const ProjectFeatured = ({ projectData,inProjectPage }) => {
       <div className="text-white">
         <h1 className="text-7xl">
           {projectData?.title}
+          <span className="ml-2  text-xl text-[#b1b1b1] underline underline-offset-4">
+            {projectData?.client}
+          </span>
         </h1>
         <p className="text-xl my-5">
           {projectData?.summary}
         </p>
-        <Link href={{pathname: `/projects/${projectData?.title.toLowerCase()}`, query: query}} className="py-5 px-10 text-xl mt-5 bg-[#333333]">
+        <Link href={{pathname: `/projects/${projectData?.title.toLowerCase()}`, query: query}} className="py-5 px-10 text-xl inline-block mt-5 bg-[#333333]">
           Read more
         </Link>
       </div>
