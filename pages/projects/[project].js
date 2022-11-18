@@ -15,6 +15,9 @@ import { useRouter } from "next/router";
 
 import i18n from "../../i18n/index";
 
+import textStylingMarkdown from "../../styles/scss/textStylingMarkdown.module.scss";
+import { faArrowLeft, faCaretLeft, faLeftLong } from "@fortawesome/free-solid-svg-icons";
+
 
 export const getStaticPaths = async () => {
   const paths = await getAllProjects();
@@ -30,13 +33,14 @@ export const getStaticProps = async (context) => {
   if(!context?.params?.project) throw new Error("No project name provided");
 
 
-
+  //get all project data translations
   let projectData = Object.keys(i18n.translations).map(async (lang) => {
     return await getProjectData(`${context.params.project}-${lang}`);
   });
 
   projectData = await Promise.all(projectData);
 
+  // Reduce the object to an array of language keys and language specific project data
   projectData = projectData.reduce((acc, cur) => {
     acc[cur.locale] = cur;
     return acc;
@@ -57,9 +61,6 @@ const Project = ({projectData}) => {
   const { t } = useTranslation();
   const [query] = useLanguageQuery();
 
-  console.log(projectData);
-
-
   projectData = projectData[(router.query.lang || "en")];
 
   return (
@@ -74,11 +75,11 @@ const Project = ({projectData}) => {
             />
           </Head>
           <div className="container mx-auto py-48">
-            <Link href={{ pathname: "/projects", query: query}} className="w-full text-white text-xl uppercase">
-              ᐊ Back to projects page
+            <Link href={{ pathname: "/projects", query: query}} className="text-2xl block mb-5 text-red-500">
+              <FontAwesomeIcon style={{ fontSize:24}} icon={faCaretLeft} /> Back to projects page
             </Link>
             <ProjectFeatured projectData={projectData} inProjectPage={true}/>
-            <span className="project-description w-6/12 text-reg mt-5 inline-block" dangerouslySetInnerHTML={{ __html : projectData.content }}></span>
+            <span className={`${textStylingMarkdown.textStylingMarkdown}  text-white mt-5 inline-block`} dangerouslySetInnerHTML={{ __html : projectData.content }}></span>
           </div>
     </div>
 

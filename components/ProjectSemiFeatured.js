@@ -21,12 +21,15 @@ const ProjectSemiFeatured = ({ projectData }) => {
       </div>
       <div className="text-white w-5/6">
         <h1 className="text-5xl">
-          {projectData?.title}
+          {projectData?.title} 
+          <span className="ml-2  text-base text-[#b1b1b1] underline underline-offset-4">
+            {projectData?.client}
+          </span>
         </h1>
         <p className="text-xl my-5">
           {projectData?.summary}
         </p>
-        <Link href={{pathname: `/projects/${projectData?.title.toLowerCase()}`, query: query}} className="py-5 px-10 text-xl mt-5 bg-[#333333]">
+        <Link href={{pathname: `/projects/${projectData?.title.toLowerCase()}`, query: query}} className="py-5 px-10 text-xl inline-block mt-5 bg-[#333333]">
           Read more
         </Link>
       </div>
