@@ -48,7 +48,7 @@ const Projects = ({allProjectsData}) => {
 
 
   return (
-    <div className="min-h-screen w-screen justify-center items-center relative bg-background" >
+    <div className="min-h-screen w-screen justify-center items-center relative" >
       <Head>
         <title>Projects - syandelbart.com</title>
         <meta property="og:title" content="Projects - syandelbart.com" />
