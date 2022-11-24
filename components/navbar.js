@@ -63,15 +63,15 @@ const Navbar = () => {
                 className="sr-only peer"
                 onChange={updateValue}
               ></input>
-            <div className="-mt-1 after:-mt-px w-11 h-5 bg-gray-200  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[2px] after:bg-white dark:after:bg-white dark:after:border-white after:border-black after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
+            <div className="-mt-1 after:-mt-px w-11 h-5 bg-gray-300  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[2px] after:bg-white dark:after:bg-white dark:after:border-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
           </label>
           <FontAwesomeIcon style={{ fontSize:23}} icon={faLightbulb} />
         </div>
         <div className="flex gap-4">
-          <span className={`${query?.lang === "en" ? "text-black dark:text-white" : "text-link-inactive dark:text-link-inactive-dark"}`}>
+          <span className={`${query?.lang === "en" ? "text-black dark:text-white underline underline-offset-[6px] decoration-1" : "text-link-inactive dark:text-link-inactive-dark"}`}>
             <LanguageSwitcher lang="en">EN</LanguageSwitcher>
           </span>
-          <span className={`${query?.lang === "nl" ? "text-black dark:text-white" : "text-link-inactive dark:text-link-inactive-dark"}`}>
+          <span className={`${query?.lang === "nl" ? "text-black dark:text-white underline underline-offset-[6px] decoration-1" : "text-link-inactive dark:text-link-inactive-dark"}`}>
             <LanguageSwitcher lang="nl">NL</LanguageSwitcher>
           </span>
         </div>

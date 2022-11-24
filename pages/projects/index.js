@@ -57,12 +57,12 @@ const Projects = ({allProjectsData}) => {
       <div className="container mx-auto py-48">
         <ProjectFeatured projectData={allProjectsFeatured[0]} />
         {
-          <div className="grid grid-cols-2 mt-20">
+          <div className="grid grid-cols-2 mt-20 gap-5">
             <ProjectSemiFeatured projectData={allProjectsFeatured[0]}/>
             <ProjectSemiFeatured projectData={allProjectsFeatured[0]}/>
           </div>
         }
-        <div className="grid grid-cols-3 mt-20">
+        <div className="grid grid-cols-3 mt-20 gap-10 auto-rows-max">
           {
             allProjectsLocale.map((project) => {
               return (

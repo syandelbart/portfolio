@@ -54,7 +54,6 @@ export default function Home() {
             <Link href="/" className="bg-backdrop dark:bg-backdrop-dark py-2 sm:py-3 px-4 sm:px-10 text-2xl rounded-md sm:my-8 m-auto mt-5">
               {t("home.intro.button")}
             </Link>
-            
           </div>
           <div className="flex flex-row sm:flex-col justify-center gap-2 items-center text-xl text-black dark:text-soft my-10 sm:my-0">
             <a className="relative" target="_blank" href="https://www.linkedin.com/in/syandelbart/">
