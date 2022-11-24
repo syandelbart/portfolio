@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CS
 import "@fortawesome/free-brands-svg-icons";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Head from "next/head";
+import { ThemeProvider } from "next-themes";
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 
@@ -14,14 +15,16 @@ import Footer from "../components/footer";
 function App({ Component, pageProps }) {
   return (
     <>
-      <main>
-        <Head>
-          <link rel="shortcut icon" href="/favicon.png" />
-        </Head>
-        <Navbar/>
-        <Component {...pageProps} />
-        <Footer/>
-      </main>
+      <ThemeProvider attribute="class">
+        <main className="bg-[#d7d7d7] dark:bg-background text-black dark:text-default">
+          <Head>
+            <link rel="shortcut icon" href="/favicon.png" />
+          </Head>
+          <Navbar/>
+          <Component {...pageProps} />
+          <Footer/>
+        </main>
+      </ThemeProvider>
     </>
   );
 }
