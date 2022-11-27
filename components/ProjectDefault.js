@@ -18,10 +18,10 @@ const ProjectDefault = ({ projectData }) => {
       <div className="relative w-full min-w-full max-w-full h-[200px] min-h-[200px] max-h-[200px]">
         <Image src={projectData?.bg} fill className="bg-[#676767] object-cover"/>
       </div>
-      <div className=" w-5/6">
-        <h1 className="text-4xl">
+      <div className="w-5/6">
+        <h1 className="text-5xl">
           {projectData?.title}
-          <span className="ml-2  text-sm dark:text-[#b1b1b1] underline underline-offset-4">
+          <span className="ml-2  text-sm text-gray-700 dark:text-[#b1b1b1] underline underline-offset-4">
             {projectData?.client}
           </span>
         </h1>

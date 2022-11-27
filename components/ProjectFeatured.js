@@ -18,10 +18,10 @@ const ProjectFeatured = ({ projectData,inProjectPage }) => {
       <div className="relative w-[600px] min-w-[600px] max-w-[600px] h-[400px] min-h-[400px] max-h-[400px]">
         <Image src={projectData?.bg} fill className="bg-[#676767] object-cover"/>
       </div>
-      <div className="">
-        <h1 className="text-5xl">
+      <div>
+        <h1 className="text-7xl">
           {projectData?.title}
-          <span className="ml-2  text-xl dark:text-[#b1b1b1] underline underline-offset-4">
+          <span className="ml-2  text-xl text-gray-700 dark:text-[#b1b1b1] underline underline-offset-4">
             {projectData?.client}
           </span>
         </h1>
