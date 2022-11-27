@@ -73,13 +73,13 @@ export default function Home() {
               <span className="tooltip">CV</span>
             </a>
           </div>
-          <div>
+          <div >
             <Image
                 src="/images/me.png"
                 alt="A picture of me, Syan"
                 width={300}
                 height={300}
-                className="border-[10px] border-backdrop m-auto"
+                className="border-[10px] border-backdrop dark:border-backdrop-dark m-auto"
               />
           </div>
 

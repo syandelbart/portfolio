@@ -62,6 +62,7 @@ const Navbar = () => {
                 id="default-toggle"
                 className="sr-only peer"
                 onChange={updateValue}
+                checked={theme != "dark"}
               ></input>
             <div className="-mt-1 after:-mt-px w-11 h-5 bg-gray-300  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[2px] after:bg-white dark:after:bg-white dark:after:border-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
           </label>
