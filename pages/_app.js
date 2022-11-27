@@ -15,7 +15,7 @@ import Footer from "../components/footer";
 function App({ Component, pageProps }) {
   return (
     <>
-      <ThemeProvider attribute="class">
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem="false" storageKey="theme">
         <main className="bg-[#d7d7d7] dark:bg-background text-black dark:text-default">
           <Head>
             <link rel="shortcut icon" href="/favicon.png" />

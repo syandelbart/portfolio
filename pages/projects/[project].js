@@ -75,7 +75,7 @@ const Project = ({projectData}) => {
             />
           </Head>
           <div className="container mx-auto py-48">
-            <Link href={{ pathname: "/projects", query: query}} className="text-2xl block mb-5 text-red-500">
+            <Link href={{ pathname: "/projects", query: {lang: router.query.lang}}} className="text-2xl block mb-5 text-red-500">
               <FontAwesomeIcon style={{ fontSize:24}} icon={faCaretLeft} /> Back to projects page
             </Link>
             <ProjectFeatured projectData={projectData} inProjectPage={true}/>
