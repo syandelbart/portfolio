@@ -64,7 +64,7 @@ const Project = ({projectData}) => {
   projectData = projectData[(router.query.lang || "en")];
 
   return (
-    <div className="min-h-screen w-screen justify-center items-center relative bg-background">
+    <div className="min-h-screen w-screen justify-center items-center relative">
           <Head>
             <title>{ projectData.title } - Projects - syandelbart.com</title>
             <meta property="og:title" content={`${projectData.title} - Projects - syandelbart.com`} />
@@ -79,7 +79,7 @@ const Project = ({projectData}) => {
               <FontAwesomeIcon style={{ fontSize:24}} icon={faCaretLeft} /> Back to projects page
             </Link>
             <ProjectFeatured projectData={projectData} inProjectPage={true}/>
-            <span className={`${textStylingMarkdown.textStylingMarkdown}  text-white mt-5 inline-block`} dangerouslySetInnerHTML={{ __html : projectData.content }}></span>
+            <span className={`${textStylingMarkdown.textStylingMarkdown}  mt-5 inline-block`} dangerouslySetInnerHTML={{ __html : projectData.content }}></span>
           </div>
     </div>
 
