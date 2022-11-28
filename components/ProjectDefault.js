@@ -19,7 +19,7 @@ const ProjectDefault = ({ projectData }) => {
         <Image src={projectData?.bg} fill className="bg-[#676767] object-cover"/>
       </div>
       <div className="w-5/6">
-        <h1 className="text-5xl">
+        <h1 className="text-4xl">
           {projectData?.title}
           <span className="ml-2  text-sm text-gray-700 dark:text-[#b1b1b1] underline underline-offset-4">
             {projectData?.client}

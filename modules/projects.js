@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import remarkGridTables from "remark-grid-tables";
 
 const projectsDir = path.join(process.cwd(), "projects");
 
@@ -42,6 +43,8 @@ export const getProjectData = async (project) => {
 
   let locale = project.substring(project.lastIndexOf("-") + 1, project.length);
 
+  matterConversed.data.rawData = Date.parse(matterConversed.data.date) || Date.now();
+
   return {
     ...matterConversed.data,
     locale : locale,
@@ -62,7 +65,7 @@ export const getAllProjectsData = async () => {
 
 export const getAllProjectDataSorted = async () => {
   return (await getAllProjectsData()).sort((a, b) => {
-    if(a.date || (new Date()).getTime() < b.date || (new Date()).getTime()) return 1;
+    if(a.rawDate < b.rawDate) return 1;
     else return -1;
   });
 }
