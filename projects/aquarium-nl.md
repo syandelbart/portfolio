@@ -1,63 +1,54 @@
 ---
 title: Aquarium
-date: 123456789
+date: 01 Jan 1970 00:00:00 GMT
 bg: /images/project_fishtank.png
-summary: Een IoT visbak die de waterhoogte controleert en automatisch kan voederen.
+summary: Een IoT vistank die de waterhoogte monitored en automatisch kan voederen
 category: iot
 client: Thomas More
 featured: true
 ---
-# Erat patriaque Leucippusque ignes meorum inpatiens ille
 
-## Durata ac solo rudis palmis
+## Introductie
 
-Lorem markdownum, marmora quare at dixit tota? Nec negabo terrore tellure,
-faciemque ille **quies emicuit** caedibus iubent glandes. Nunc pietas accipiunt
-huius, temerasse monendo gladio pennis agrisque secura: o acuta iuveni. Vir hic
-cortinaque caelo, sub cadunt; effectum niveis rotis, populi.
+Dit project was gemaakt voor het "IoT Essentials" vak aan Thomas More. Het doel was om je kennis van GPIO en Python aan te tonen. Ik heb gewerkt met meerdere componenten (stepper motor, ultrasonic sensor, lcd, buttons). Een aantal andere functies waren ook geïmplementeerd in dit project zoals phone control, live stream en het uploaden van component data naar Ubeac.
 
-    var kdeYoutube = grep_export(dongle);
-    if (registryBoot + -4 * mediaDdl + 3) {
-        servlet_active_osd(tweak);
-    }
-    cc -= clientIn + oem_www_linux(sliBar + eupBookmark, 2 * 3, 279182);
-    public_ripcording(http_dvd_digital + 5 - eBannerServer, -5);
+## De code
 
-Rostrisque Oebalide gradumque; penderet qui, ex lege, concumbere oscula Petraei
-feres. Ument ubi nec sex gratantur illo amans nec vidi nomen forma Eueni
-peraravit; et armorum de namque fronte, levibus. Sub Hectoris: olim foedera,
-sedula fertur baculum virtutem loquuntur peiora, et ad genitus manebunt. Subit
-telo veste proferre quod tecta pro nocte vestros mittit antiquae deum.
+De code is niet optimaal. Het idee was om het leesbaar maar ook functioneel te houden. De [volledige code](https://github.com/syandelbart/TM-IoTEssentials-Aquarium-Public/blob/39d13a232f90d73d33709c2a4207e6071885a97d/final.py) kan gevonden worden op GitHub.
 
-## Me adnuit levem bracchia annum
+    ```python
+    ps_checkbuttons = Process(target = getButtonPresses)
+    ps_checkbuttons.start()
 
-Se qui infans [mentis](http://caesariemdiscutiunt.io/), indignante limbo. Misit
-contentus ipse semper inque et igne, opprobria arvis, vestras formaene, mora
-nigra [aures et](http://www.praesensmihi.com/membra-amnis)! In movi premeret
-carinae vellet antiquas nescitve circumfluus coepto monte, patruelis. Decidit
-vatemque utinam capulo, piorum plenumque tuorum, Proetum, cura pinus! Hosti
-Lycei cum est rapidum anne, Alcithoe, a.
+    #Set the timeout for the motor moving (=automatic feeding)
+    motor_timeout = 60 * 60 * 12
+    motor_now = ""
 
-Movet fuerat iunctissima qualia simul. Hos est dolor dicere modo simul inpia
-non, sequentia femina laboratum.
+    while True:
+        getCurrentTime()
+        getUltrasonicReadings()
+        getLampState(False,True)
+        if not motor_now or time.time() - motor_now > motor_timeout:
+            motorMove(motor_steps_total * 1/4,True)
+            motor_now = time.time()
+            motor_next_feed = time.localtime(motor_now + motor_timeout)
+            drawRow(1,nextfeed + str(motor_next_feed.tm_hour) + ":" + str(motor_next_feed.tm_min))
+    ```
 
-    array.tiffFolder -= 3;
-    if (-3 + matrix) {
-        piconet(ofParityGoodput(basicOperating, 859810), 4, systemGoodputMedia);
-    } else {
-        eps_subdirectory -= ict_login_model.ebookGbpsRedundancy(
-                office_speed_task, cmyk_dfs) + booleanInfringementUri;
-        third_ipod_moodle.asp_password = scraping;
-    }
-    pcmciaBinary -= constantInternal;
+Het meest belangrijke onderdeel is de main code. Deze code zal eerst een nieuw proces creëren voor `ps_checkbuttons`, anders zou de input van de knoppen een serieuze vertraging oplopen aangezien het zou moeten wachten op de uitvoering van andere functies. Daaronder zal er een `motor_timeout` gedefinieerd worden die de hoeveelheid tijd tussenin rotaties (voor het voederen van de vissen) zal bijhouden. Ten laatste zal het programma over de functies itereren om de huidige tijd, de gemeten afstand en de lichtstatus te updaten, en deze vervolgens op de LCD te tonen.
 
-Phrixeaque et [cum arva dum](http://www.aurum.org/quae.html) daedalus, urbis
-potitur mihi? Nemus tamen; si, erat aer, sede in mihi et longis Clytiumque arcus
-mei monte in vincas soporem. Helicona superest loca Pergama tactusque iactanti
-et equos Turno acumina praeponere pariter! Pater erat aura removebitur simplex;
-nec, atris, omnes.
+## Evaluatieschema
 
-Protinus appellat, fauces ante, lateo latere, vestemque in Lycias. Enim pacis
-tempore hoc aut has es postquam iterum poterant ad opem vulnere corpora! Has
-reparabile coniunx **palladias orbi profecto** mihi, secedere o cultum invisa
-adit greges ne ferit Pirenida nulla fornacibus illa.
+- Stepper motor drops food
+- Ultrasonic measurement of depth
+- Pump and light turn on/off
+- Buttons
+- LCD
+- Ubeac upload
+- Live stream
+- Phone control
+- Nice physical setup
+
+## Slot
+
+Dit project heeft me meer geleerd over GPIO, en het combineren van meerdere componenten in één functioneel programma. Voor toekomste programma zou ik de I2C stepper motor prefereren, aangezien die eenvoudiger te besturen is. Hetzelfde voor de LCD, die in dit geval een simepele display is die ook gebruikt word in (oude, baksteenlijkende) Nokia mobieltjes. Momenteel heeft elke knop zijn eigen input pin, maar voor de toekomst zou een knoppenmatrix beter zijn, aangezien nu de RPi invoer bijna volledig gevuld is... :)
