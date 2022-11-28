@@ -18,7 +18,7 @@ module.exports = {
         "backdrop": "#b0b0b0",
         "backdrop-dark": "#3E3E3E",
         "soft": "#BEBEBE",
-        "link-inactive": "#212121",
+        "link-inactive": "#313433",
         "link-inactive-dark": "#B9B7B7",
       }
     },
@@ -26,4 +26,5 @@ module.exports = {
   plugins: [
     require('tailwind-children'),
     ]
+    
 }
