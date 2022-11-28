@@ -1,63 +1,54 @@
 ---
 title: Aquarium
-date: 123456789
+date: 01 Jan 1970 00:00:00 GMT
 bg: /images/project_fishtank.png
 summary: An IoT fish tank that monitors water height and can feed automatically.
 category: iot
 client: Thomas More
 featured: true
 ---
-# Erat patriaque Leucippusque ignes meorum inpatiens ille
 
-## Durata ac solo rudis palmis
+## Introduction
 
-Lorem markdownum, marmora quare at dixit tota? Nec negabo terrore tellure,
-faciemque ille **quies emicuit** caedibus iubent glandes. Nunc pietas accipiunt
-huius, temerasse monendo gladio pennis agrisque secura: o acuta iuveni. Vir hic
-cortinaque caelo, sub cadunt; effectum niveis rotis, populi.
+This project was made for the course "IoT Essentials" at Thomas More. The purpose was to show your knowledge regarding GPIO and a basic understanding of Python. I worked with different components (stepper motor, ultrasonic sensor, lcd, buttons). Some other functions were implemented such as phone control, live stream and uploading component data to Ubeac.
 
-    var kdeYoutube = grep_export(dongle);
-    if (registryBoot + -4 * mediaDdl + 3) {
-        servlet_active_osd(tweak);
-    }
-    cc -= clientIn + oem_www_linux(sliBar + eupBookmark, 2 * 3, 279182);
-    public_ripcording(http_dvd_digital + 5 - eBannerServer, -5);
+## The code
 
-Rostrisque Oebalide gradumque; penderet qui, ex lege, concumbere oscula Petraei
-feres. Ument ubi nec sex gratantur illo amans nec vidi nomen forma Eueni
-peraravit; et armorum de namque fronte, levibus. Sub Hectoris: olim foedera,
-sedula fertur baculum virtutem loquuntur peiora, et ad genitus manebunt. Subit
-telo veste proferre quod tecta pro nocte vestros mittit antiquae deum.
+The code isn't perfectly optimized. The idea was to keep it readable but functional as well. The [complete code](https://github.com/syandelbart/TM-IoTEssentials-Aquarium-Public/blob/39d13a232f90d73d33709c2a4207e6071885a97d/final.py) can be found on GitHub.
 
-## Me adnuit levem bracchia annum
+    ```python
+    ps_checkbuttons = Process(target = getButtonPresses)
+    ps_checkbuttons.start()
 
-Se qui infans [mentis](http://caesariemdiscutiunt.io/), indignante limbo. Misit
-contentus ipse semper inque et igne, opprobria arvis, vestras formaene, mora
-nigra [aures et](http://www.praesensmihi.com/membra-amnis)! In movi premeret
-carinae vellet antiquas nescitve circumfluus coepto monte, patruelis. Decidit
-vatemque utinam capulo, piorum plenumque tuorum, Proetum, cura pinus! Hosti
-Lycei cum est rapidum anne, Alcithoe, a.
+    #Set the timeout for the motor moving (=automatic feeding)
+    motor_timeout = 60 * 60 * 12
+    motor_now = ""
 
-Movet fuerat iunctissima qualia simul. Hos est dolor dicere modo simul inpia
-non, sequentia femina laboratum.
+    while True:
+        getCurrentTime()
+        getUltrasonicReadings()
+        getLampState(False,True)
+        if not motor_now or time.time() - motor_now > motor_timeout:
+            motorMove(motor_steps_total * 1/4,True)
+            motor_now = time.time()
+            motor_next_feed = time.localtime(motor_now + motor_timeout)
+            drawRow(1,nextfeed + str(motor_next_feed.tm_hour) + ":" + str(motor_next_feed.tm_min))
+    ```
 
-    array.tiffFolder -= 3;
-    if (-3 + matrix) {
-        piconet(ofParityGoodput(basicOperating, 859810), 4, systemGoodputMedia);
-    } else {
-        eps_subdirectory -= ict_login_model.ebookGbpsRedundancy(
-                office_speed_task, cmyk_dfs) + booleanInfringementUri;
-        third_ipod_moodle.asp_password = scraping;
-    }
-    pcmciaBinary -= constantInternal;
+The most important part is the main code. This code will first create a new process for `ps_checkbuttons`, otherwise button input would have a serious delay as it would have to wait for each other function to execute. Below that a `motor_timeout` will be defined which will define the amount of time in between rotations (for feeding the fish). Lastly the program will loop over functions to update the current time, update the distance measured and the lamp state and print all these updated values to the LCD.
 
-Phrixeaque et [cum arva dum](http://www.aurum.org/quae.html) daedalus, urbis
-potitur mihi? Nemus tamen; si, erat aer, sede in mihi et longis Clytiumque arcus
-mei monte in vincas soporem. Helicona superest loca Pergama tactusque iactanti
-et equos Turno acumina praeponere pariter! Pater erat aura removebitur simplex;
-nec, atris, omnes.
+## Evaluation criteria
 
-Protinus appellat, fauces ante, lateo latere, vestemque in Lycias. Enim pacis
-tempore hoc aut has es postquam iterum poterant ad opem vulnere corpora! Has
-reparabile coniunx **palladias orbi profecto** mihi, secedere o cultum invisa
-adit greges ne ferit Pirenida nulla fornacibus illa.
+- Stepper motor drops food
+- Ultrasonic measurement of depth
+- Pump and light turn on/off
+- Buttons
+- LCD
+- Ubeac upload
+- Live stream
+- Phone control
+- Nice physical setup
+
+## Ending note
+
+This project made me learn more about GPIO, and how to combine multiple components in one functional program. For future projects however, I would prefer an I2C stepper motor, as that is way easier to manage. Same goes for the LCD, which in this case was a simple display also used in (old,brick-like) Nokia phones. Currently the buttons each have their own input pin, but for the future a button matrix might be better, as right now the RPi inputs were filled almost entirely... :)
