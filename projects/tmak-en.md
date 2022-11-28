@@ -1,6 +1,6 @@
 ---
 title: TMAK
-date: 01 Jan 1970 00:00:00 GMT
+date: 01 Nov 2022 00:00:00 GMT
 bg: /images/tmak.png
 summary: A website made for 't Meppeler Assurantiekantoor
 category: webdesign

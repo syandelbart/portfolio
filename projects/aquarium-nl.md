@@ -1,6 +1,6 @@
 ---
 title: Aquarium
-date: 01 Jan 1970 00:00:00 GMT
+date: 30 Jun 2022 00:00:00 GMT
 bg: /images/project_fishtank.png
 summary: Een IoT vistank die de waterhoogte monitored en automatisch kan voederen
 category: iot
